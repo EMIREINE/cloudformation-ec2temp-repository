@@ -1,0 +1,27 @@
+---
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      Tags:
+        - Key: Name
+          Value: MyVPC
+  Subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: "10.0.224.0/20"
+      AvailabilityZone: "us-east-1a"
+      Tags:
+        - Key: Name
+          Value: MySubnet
+  Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-02396cdd13e9a1257
+      SubnetId: subnet-0c046c5f840f8bbb7
+      Tags:
+        - Key: Name
+          Value: "emireine-ec2"
